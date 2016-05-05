@@ -1,7 +1,8 @@
 <html lang="it" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta charset="utf-8" />
-	<title>SHOPPING</title>
+	<title>CHOOSE YOUR STYLE</title>
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
 </head>
 <body>
 	<div id="menu">
@@ -10,11 +11,11 @@
 			
 			<!-- 3° Elemento: (Sottomenu) -->
 			<li>
-				<a href="#">Select the shop</a>
+				<a href="#">Hi, choose your style!</a>
 				<ul>
-					<li><a href="#">H&M</a></li>
-					<li><a href="#">ZARA</a></li>
-					<li><a href="#">BERSHKA</a></li>
+					<li><a href="#">Crea il tuo outfit</a></li>
+					<li><a href="#">Cerca outfit</a></li>
+					<li><a href="#">I miei outfit</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -29,9 +30,10 @@
 <script src="pulsanteFB.js" type="text/javascript"></script>
 
 <!--bottone_facebook-->
-<!--<div class="facebook/fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
--->
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> </fb:login-button>
+<div class="facebook/fb-login-button" data-max-rows="1" data-size="medium" data-show-faces="false" data-auto-logout-link="false"></div>
+
+<fb:login-button scope="public_profile,email" data-auto-logout-link="true" onlogin="checkLoginState();"> </fb:login-button>
+
 	 
 </body>
 </html>
