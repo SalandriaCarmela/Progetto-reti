@@ -1,3 +1,20 @@
+function testAPI() {
+console.log('Welcome!  Fetching your information.... ');
+FB.api('/me',{fields: ['email', 'name']}, function(response) {
+  console.log('Stampo info facebook');
+
+  $.ajax({
+    type: "POST",
+    url: "http://localhost:8080/registrati",
+    data: {email: response.email, psw1: response.name, fb: "Y"},
+    success: function(data){
+      window.location.replace("http://localhost:8080/outfit");
+    }
+  });
+});
+}
+
+
 
 function check_form(documento){
 	var psw1= documento.url_in.psw1.value;
