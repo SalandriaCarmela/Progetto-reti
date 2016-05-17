@@ -1,0 +1,11 @@
+Users:{
+   email:"",
+   psw:"",
+   fb:"",
+   outfits:[
+   {
+	link:"",
+	item_id:"",
+   }
+]
+}
