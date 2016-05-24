@@ -1,15 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<meta charset="UTF-8">
-	<head>
-<title>HOME</title>
-
-
-
-
-
-<script >
 function generateItems(){
   $.get("http://localhost:8080/data", function(data){
     console.log("GENERATE ITEMS PARTITO");
@@ -34,7 +22,7 @@ function generateItems(){
             singleItem = JSON.stringify(data[i].itemId);
             singleItem1 = JSON.stringify(data[k].itemId);
             singleItem2 = JSON.stringify(data[j].itemId);
-            tbody += '<input align="center" type="image" src="clothes.png"  name="all" onclick="getItemData('+singleItem.replace(/\"/g, "")+','+singleItem1.replace(/\"/g, "")+','+singleItem2.replace(/\"/g, "")+');"/>';
+            tbody += '<input align="center" type="image" src="Immagini/ciao.jpg"  name="all" onclick="getItemData('+singleItem.replace(/\"/g, "")+','+singleItem1.replace(/\"/g, "")+','+singleItem2.replace(/\"/g, "")+');"/>';
             tbody += '</td>';
             tbody += '</tr>\n';
             i=i+2;
@@ -95,36 +83,3 @@ function getItemData(item,item1,item2){
       });
  });
 }
-
-</script>	
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
-	</head>
-	
-	
-
-<body onload="generateItems();">
-	<img src="Immagini/ciao.jpg"> 
-	<div id="fb-root"></div>
-CREA IL TUO OUTFIT
-<!--form action=http://localhost:8080/inseriscilink target=”_blank”!-->
- <button name=”Crea” type=”submit” onclick= "/inseriscilink">
-   
-   <img width=”23″ height=”67″ border=”1″ vspace=”5″ 
- align=”middle”>    
-   <b>CREA</b>
- </button> 
-<!--/form!-->
-
-<table height="100%" class="container">
-	<tr>
-		<td width="30%" class="container">
-				 <div id="products"> </div>
-		</td>
-		<td width="75%" class="container" id="specs"> &nbsp;</td>
-	</tr>
-</table>
-
-</div>
-</body>
-</html>

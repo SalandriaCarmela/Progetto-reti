@@ -14,17 +14,15 @@ FB.api('/me',{fields: ['email', 'name']}, function(response) {
 });
 }
 
-
-
 function check_form(documento){
 	var psw1= documento.url_in.psw1.value;
 	var psw2= documento.url_in.psw2.value;
-  var mail= documento.url_in.email.value;
-  var passw=true;
-  var email=false;
-  for(var i in DOMAINS){
-    if(mail.search(DOMAINS[i])>0){
-      email=true;
+    var mail= documento.url_in.email.value;
+    var passw=true;
+    var email=false;
+    for(var i in DOMAINS){
+		if(mail.search(DOMAINS[i])>0){
+        email=true;
     }
   }
 
@@ -65,7 +63,7 @@ var DOMAINS = [
   /* French ISP domains */
   "hotmail.fr", "live.fr", "laposte.net", "yahoo.fr", "wanadoo.fr", "orange.fr", "gmx.fr", "sfr.fr", "neuf.fr", "free.fr",
   /* italian ISP domains */
-  "hotmail.it", "live.it", "laposte.it", "yahoo.it", "wanadoo.it", "orange.it", "gmx.it", "sfr.it", "neuf.it", "free.it",
+  "hotmail.it", "live.it", "laposte.it", "yahoo.it", "wanadoo.it", "orange.it", "gmx.it", "sfr.it", "neuf.it", "free.it", "libero.it"
 
   /* German ISP domains */
   "gmx.de", "hotmail.de", "live.de", "online.de", "t-online.de" /* T-Mobile */, "web.de", "yahoo.de",
