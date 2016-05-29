@@ -6,26 +6,47 @@
 <title>INSERISCI LINK </title>
 
 
-
+<script src="scriptFacebook.js" type="text/javascript"></script> 
 <script src="generateitems.js" type="text/javascript"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
+<link rel="stylesheet" type="text/css" href="foglidistile/inseriscilink.css" />
+	
+	<style>
+	@import url(inseriscilink.css)
+	</style>
+	
 	</head>
 	
 	
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="su.jpg" align="center">	
 <body>
 	<div id="fb-root"></div>
 
 
 <p align='center'>
-	CREA IL TUO OUTFIT
-	<form name=url_in action="/inseriscilink" method="post" onsubmit="return (checkSearch(document.url_in.url.value);"
-	</br></br></br>
-			<td class="searcher" width="70%"><input name="url" type="text" value=""  placeholder="Inserire URL Maglia" id="searchBar" required></td>
-			<td class="searcher"  width="30%"><input type="submit" value="DONE" id="add"/></td>
+	
+	<form align='center'name=url_in action="/inseriscilink" method="post" onsubmit="return (checkSearch(document.url_in.url.value,document.url_in.url1.value,document.url_in.url2.value));">
+
+	<table border=0 align="center">
+		  <th>Inserisci le URL dei vestiti</th>
+			<tr><td class="searcher" width="70%"><input name="url" type="text" value=""  placeholder="Inserire URL Indumento1" id="searchBar" required></td></tr>
+			</br></br>
+			<tr><td class="searcher" width="70%"><input name="url1" type="text" value=""  placeholder="Inserire URL Indumento2" id="searchBar" required></td></tr>
+			</br></br>
+			<tr><td class="searcher" width="70%"><input name="url2" type="text" value=""  placeholder="Inserire URL Indumento3" id="searchBar" required></td></tr>
+			</br></br>
+			</br><tr><td align ='center' class="searcher"  width="30%"><input type="submit" value="DONE" id="add"/></td></tr>
+			</table>
 	</form>
 			<!--td class="searcher" width="20%"><input name="target" type="numeric" value<="" placeholder="Prezzo target" id="target_price" required ></td!-->
 
 </p>
+<td class="footer"><a href="/errorNotLogged" class="bottomer" >
+<tr>
+	<td class="footer"><a href="/logout" class="bottomer">Logout</a></td>
+</tr>
+
 	
 </body>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="bianco.jpg" align=center>
 </html>

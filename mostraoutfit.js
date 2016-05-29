@@ -1,15 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<meta charset="UTF-8">
-	<head>
-<title>HOME</title>
-
-
-
-
-
-<script >
 function generateItems(){
   $.get("http://localhost:8080/data", function(data){
     console.log("GENERATE ITEMS PARTITO");
@@ -34,7 +22,7 @@ function generateItems(){
             singleItem = JSON.stringify(data[i].itemId);
             singleItem1 = JSON.stringify(data[k].itemId);
             singleItem2 = JSON.stringify(data[j].itemId);
-            tbody += '<input align="center" type="image" src="clothes.png"  name="all" onclick="getItemData('+singleItem.replace(/\"/g, "")+','+singleItem1.replace(/\"/g, "")+','+singleItem2.replace(/\"/g, "")+');"/>';
+            tbody += '<input align="center" type="image" src="Immagini/ciao.jpg"  name="all" onclick="getItemData('+singleItem.replace(/\"/g, "")+','+singleItem1.replace(/\"/g, "")+','+singleItem2.replace(/\"/g, "")+');"/>';
             tbody += '</td>';
             tbody += '</tr>\n';
             i=i+2;
@@ -47,21 +35,6 @@ function generateItems(){
 });
 }
 
-
-/*function deleteElem(id,id1,id2){
-  var result = confirm("Vuoi cancellare l'elemento?");
-  if(result){
-    $.ajax({
-      type: "POST",
-      url: "http://localhost:8080/delete_elem",
-      data: {elem: id},{elem: id1},{elem: id2}
-      success: function(data){
-        console.log("eliminato");
-       window.location.replace("http://localhost:8080/index");
-      }
-    });
-  }
-}*/
 
 function getItemData(item,item1,item2){
  
@@ -100,7 +73,7 @@ function getItemData(item,item1,item2){
       //ar lookup = el.toString();
        if(el=="img") htmlProd+='<tr><td id="imma"></br><img src="'+data[el]+' width="170" height="170"></img></td></tr>';
        else if(el=="link") htmlProd += "<tr><td><a href='"+data[el]+"' onclick='window.open(this.href);return false'> link al prodotto</a></td></tr>";
-        else if(el=="price") htmlProd += "<tr><td> Prezzo:"+data[el]+"€"+"</td></tr>";
+       else if(el=="price") htmlProd+="Prezzo : "+ data[el];
        //else if(el=="price") htmlProd += "<tr><td> Prezzo:"+data[el][data[el].length-1]['value'] +"€ e è stato controllato il "+data[el][data[el].length-1]['timestamp']+"</td></tr>";
       // else htmlProd += "<tr><td >"+data[el]+"</td></tr>";
      }
@@ -110,43 +83,3 @@ function getItemData(item,item1,item2){
       });
  });
 }
-
-</script>	
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>		
-		<link rel="stylesheet" type="text/css" href="foglidistile/outfit.css" />
-	<style>
-	@import url(outfit.css)
-	</style>
-</head>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="su.jpg" align="center">
-<body onload="generateItems();">
-	
-	<div id="fb-root"></div>
-CREA IL TUO OUTFIT
-<!--form action=http://localhost:8080/inseriscilink target=”_blank”!-->
-
-   <img width=”23″ height=”67″ border=”1″ vspace=”5″ 
- align=”middle”>    
-    
- <a type="button" href="/inseriscilink"> CREA </a>
-<!--/form!-->
-
-<table  align=center height="100%" class="container">
-	<tr>
-		<td width="30%" class="container">
-				 <div id="products"> </div>
-		</td>
-		<td width="75%" class="container" id="specs"> &nbsp;</td>
-	</tr>
-</table>
-
-</div>
-<td class="footer"><a href="/errorNotLogged" class="bottomer" >
-<tr>
-	<td class="footer"><a href="/logout" class="bottomer">Logout</a></td>
-</tr>
-</body>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="bianco.jpg" align=center>
-</html>
