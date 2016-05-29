@@ -1,0 +1,62 @@
+table {
+   vertical-align: bottom;
+   border-collapse: collapse;
+   border: 2px solid tan;
+   border-radius: 9px;
+   width: 50%;
+}
+
+th {
+    height: 30px;
+    text-align: center;
+    background-color: tan;
+    letter-spacing: 3px;
+    color: mistyrose;
+    line-height: 1.8;
+    font-size: 20px;
+    font-weight: bold;
+    font-family:arial;
+    text-shadow: 0 0 3px palevioletred;
+}
+
+td{
+  text-align: center;
+  font-family:arial;
+
+}
+
+input[type="text"] {
+    width: 60%;
+    padding: 2px 15px;
+    margin: 4px 0;
+    border: 2px solid tan;
+    border-radius: 9px;
+    background-color:#F5F5DC;
+    color: tan;
+    font-family:arial;
+}
+
+input[type="password"] {
+    width: 60%;
+    padding: 2px 15px;
+    margin: 8px 0;
+    border: 2px solid tan;
+    border-radius: 9px;
+    background-color:#F5F5DC;
+    color: tan;
+    font-family:arial;
+}
+
+input[type="submit"] {
+    margin: 3px 0;
+    width: 30%;
+    background-color: #F5F5DC;
+    border: 2px solid tan;
+    color: tan;
+    padding: 4px 32px;
+    border-radius: 9px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-family:arial;
+}
