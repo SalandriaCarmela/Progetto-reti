@@ -552,21 +552,8 @@ var update_element_ebay=function(id,db,user){
     },
   function(error, item) {
 	  var prezzo_att=user.Item.price;
-    db.collection("Users").update({"email": user.email, "products.name": item.Item.Title},
-    {"$push": {"value": item.Item.ConvertedCurrentPrice.amount }});
-
-    var cursor=db.collection("Users").find({"email": user.email, "products.name": item.Item.Title});
-    cursor.each(function(err,doc){
-      var prodotti;
-      if(doc!=null){
-        prodotti=doc.prodotto1;
-        for(var i in prodotti ){
-          if(prodotti[i].name==item.Item.Title){
-            db.collection("Users").update( { "email": user.email,"prodotto1.name": item.Item.Title}, { $pop: { 'price': -1 } });
-          }
-        }
-      }
-    });
+    db.collection("Users").update({"email": user.email, "prodotto1.name": item.Item.Title},
+    {"$push": {"price": item.Item.ConvertedCurrentPrice.amount }});
 
     var cursor=db.collection("Users").find({"email": user.email, "prodotto1.name": item.Item.Title});
     cursor.each(function(err,doc){
@@ -577,7 +564,7 @@ var update_element_ebay=function(id,db,user){
         if(prodotti[i].name==item.Item.Title){
           if(item.Item.ConvertedCurrentPrice.amount<=prezzo_att && !prodotti[i].email_sent){
             transporter.sendMail({
-                from: '"PriceTracker" <pricetrackerservicemail@gmail.com>', // sender address
+                from: '"Chooseyourstyleapp" <chooseyourstyleapp@gmail.com>', // sender address
                 to: user.email, // list of receivers
                 subject: 'Raggiungimento soglia prodotto', // Subject line
                 text: "Il prodotto "+ item.Item.Title+" è in Saldo 🔍 😎 🐧 "// plaintext body
@@ -622,7 +609,7 @@ var emetti_evento=function(){
   eventEmitter.emit("check_prices");
 }
 
-setInterval(emetti_evento, 12*hour);
-
+setInterval(emetti_evento,12*hour);
+		
 app.listen(8080);
 console.log("server lanciato sulla porta 8080");
