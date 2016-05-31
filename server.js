@@ -539,6 +539,90 @@ app.get('/info/profilo/:user_id',function(request,response){
     });
   });
 });
-		
+//---------------EVENTO NOTIFICHE ------------------------------
+
+var update_element_ebay=function(id,db,user){
+  ebay.xmlRequest({
+      'serviceName': 'Shopping',
+      'opType': 'GetSingleItem',
+      'appId': 'AngelaLo-chooseyo-PRD-34d8cb02c-c598c27a',      // FILL IN YOUR OWN APP KEY, GET ONE HERE: https://publisher.ebaypartnernetwork.com/PublisherToolsAPI
+      params: {
+        'ItemId':id    // FILL IN A REAL ItemID
+        }
+    },
+  function(error, item) {
+	  var prezzo_att=user.Item.price;
+    db.collection("Users").update({"email": user.email, "products.name": item.Item.Title},
+    {"$push": {"value": item.Item.ConvertedCurrentPrice.amount }});
+
+    var cursor=db.collection("Users").find({"email": user.email, "products.name": item.Item.Title});
+    cursor.each(function(err,doc){
+      var prodotti;
+      if(doc!=null){
+        prodotti=doc.prodotto1;
+        for(var i in prodotti ){
+          if(prodotti[i].name==item.Item.Title){
+            db.collection("Users").update( { "email": user.email,"prodotto1.name": item.Item.Title}, { $pop: { 'price': -1 } });
+          }
+        }
+      }
+    });
+
+    var cursor=db.collection("Users").find({"email": user.email, "prodotto1.name": item.Item.Title});
+    cursor.each(function(err,doc){
+      var prodotti;
+      if(doc!=null){
+      prodotti=doc.prodotto1;
+      for(var i in prodotti ){
+        if(prodotti[i].name==item.Item.Title){
+          if(item.Item.ConvertedCurrentPrice.amount<=prezzo_att && !prodotti[i].email_sent){
+            transporter.sendMail({
+                from: '"PriceTracker" <pricetrackerservicemail@gmail.com>', // sender address
+                to: user.email, // list of receivers
+                subject: 'Raggiungimento soglia prodotto', // Subject line
+                text: "Il prodotto "+ item.Item.Title+" è in Saldo 🔍 😎 🐧 "// plaintext body
+            },
+            function(error, info){
+               if(error){
+                   return console.log(error);
+               }
+               console.log('Message sent: ' + info.response + " e email_sent è stata cambiata");
+               db.collection("Users").update( { "email": user.email,"prodotto1.name": item.Item.Title}, { $set: { 'prodotto1.$.email_sent':true} });
+
+           });
+          }
+        }
+      }
+      }
+    });
+  });
+};
+
+
+var listener=function(){
+  MongoClient.connect(url_mongo,function(err,db){
+    assert.equal(err,null);
+    var cursor=db.collection('Users').find();
+    cursor.each(function(err,user){
+      if(user!=null){
+        var elem_list=user.prodotto1;
+        for(var elem in elem_list){
+          var id_product=elem_list[elem].itemId;
+          update_element_ebay(id_product,db,user)
+        }
+      }
+    });
+  });
+};
+
+eventEmitter.addListener("check_prices",listener);
+
+var emetti_evento=function(){
+  console.log("check prices emesso");
+  eventEmitter.emit("check_prices");
+}
+
+setInterval(emetti_evento, 12*hour);
+
 app.listen(8080);
 console.log("server lanciato sulla porta 8080");
